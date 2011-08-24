@@ -14,10 +14,16 @@ gem 'pivotal-tracker'
 gem 'ruby-fogbugz', :require => 'fogbugz'
 gem 'octokit'
 gem 'inherited_resources'
-gem 'SystemTimer', :platform => :ruby_18
+# gem 'SystemTimer', :platform => :ruby_18
+
+# Deploy with Capistrano
+gem 'capistrano', :git => 'git://github.com/capistrano/capistrano.git'
+gem 'capistrano-ext'
+gem 'rvm'
 
 group :production do
   gem 'hoptoad_notifier', "~> 2.3"
+  gem 'unicorn'
 end
 
 platform :ruby do
@@ -28,10 +34,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.5'
   gem 'webmock', :require => false
   gem 'factory_girl_rails'
-  unless ENV['TRAVIS']
-    gem 'ruby-debug', :platform => :mri_18
-    gem 'ruby-debug19', :platform => :mri_19, :require => 'ruby-debug'
-  end
 end
 
 group :test do
